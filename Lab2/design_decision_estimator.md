@@ -1,14 +1,15 @@
 # Design Decisions: Sensors
 ## Objective
-We like to select a state estimators that would be necessary for Woodbot to solve a particular problem. 
-Depending on sets of sensors we pick, we can do state estimations which maybe necessary for our applications.
+We like to select a state estimator that would be necessary for Woodbot to solve a particular problem. 
+Depending on uncertainties we have in the system and requirements, our decisions will be determined.
 
 ### We like to 
 
-- Narrow down sets of sensors that meets necessity and sufficiency
-- Visit each options for potential use cases (applications, state estimations)
-- Reduce work loads for the later labs (by eliminating infeasible sets of sensors)
-- Conduct design engineering decisions with proper supports.
+- Narrow down state estimators that meet necessity and sufficiency
+- Visit each option for what we need to implement them
+- Consider what assumptions we need to make and what we can or cannot observe
+- Reduce work loads for the later labs (by eliminating infeasible or inadequate estimators)
+- Conduct design engineering decisions with proper supports
 
 This will require you to fill out missing parts for full credits.
 
@@ -128,13 +129,14 @@ If Woodbot has an open loop estimator (Odometry, kinematics model):
 
 
 ## Design Decisions:
-Now we like to narrow down and make decisions on which set of sensors we like to use.
+Now we like to narrow down and make decisions on which estimator we like to use.
 
 ### Requirements
 >- Navigation in an arena (2D plane)
 >- A map and an initial state are given 
 >- Using affordable components and a microprocessor
 >- Indoor
+
 >- You cannot reset the robot during the operation (You cannot rescue the robot if localization fails)
 
 ###

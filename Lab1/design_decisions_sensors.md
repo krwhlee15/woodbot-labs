@@ -5,10 +5,10 @@ Depending on sets of sensors we pick, we can do state estimations which maybe ne
 
 ### We like to 
 
-- Narrow down sets of sensors that meets necessity and sufficiency
-- Visit each options for potential use cases (applications, state estimations)
+- Narrow down sets of sensors that meet necessity and sufficiency
+- Visit each option for potential use cases (applications, state estimations)
 - Reduce work loads for the later labs (by eliminating infeasible sets of sensors)
-- Conduct design engineering decisions with proper supports.
+- Conduct design engineering decisions with proper supports
 
 This will require you to fill out highlighted parts for full credits.
 
