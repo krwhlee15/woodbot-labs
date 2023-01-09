@@ -27,3 +27,8 @@ We provide the followings:
 ## Hardware Assembly
 Go to [Woodbot Firmware](https://git.uclalemur.com/capstone/lab/paperbot) for wiring and installing firmware.
 
+>## Double Check battery wiring!! Fire hazard
+ 
+Then run run_hardware.py. Make sure to connect to ESP wifi first.
+
+
