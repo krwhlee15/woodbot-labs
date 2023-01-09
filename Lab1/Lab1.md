@@ -11,14 +11,16 @@ codes and fully implement skeleton codes in the main repository.
 in skeleton "your_model.md"
 - [ ] The completed skeleton python module WoodbotModel.py implementing the above system models 
 - [ ] Saved output from run_model.py (automatically generates all necessary outputs with a run)
+- [ ] Complete the design decisions on sensor selections in "design_decision_sensors.md". 
 - [ ] Submit a link to your forked repository with all above included
 
-You will submit by commit and push all your changes to the remote repository. 
+You will submit above requirements by commit and push all your changes to the remote repository. 
 Please submit a link to your forked repository on Canvas.
 
 List of files to modify
 - your_math.md
 - WoodbotModel.py
+- design_decision_sensors.md
 
 ***
 # A System Overview
