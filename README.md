@@ -32,10 +32,6 @@ pip install -r requirements.txt
 ```
 kinematics
 │   README.md
-│   Lab1.pdf                       (Lab Descriptions)   
-│   Lab2.pdf                       (Lab Descriptions)   
-│   Lab3.md                       (Lab Descriptions)   
-│   Lab4.md                       (Lab Descriptions)   
 │   requirements.txt              (Pip Dependencies)   
 │
 └───Lab1
