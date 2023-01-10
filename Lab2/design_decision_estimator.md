@@ -79,19 +79,19 @@ If Woodbot has an open loop estimator (Odometry, kinematics model):
 
 ### What do we need to implement these estimators?
 #### Option 5 (2 Lidars & IMU)
->- 
+>- *Your answer here*
 >- 
 >- 
 >- 
 
 ### What kind of information can or cannot we get?
->- 
+>- *Your answer here*
 >-
 >-
 >- 
 
 ### What assumptions should we make?
->- 
+>- *Your answer here*
 >- 
 >- 
 >- 
@@ -102,19 +102,19 @@ If Woodbot has an open loop estimator (Odometry, kinematics model):
 
 ### What do we need to implement these estimators?
 #### Option 5 (2 Lidars & IMU)
->- 
+>- *Your answer here*
 >- 
 >- 
 >- 
 
 ### What kind of information can or cannot we get?
->- 
+>- *Your answer here*
 >-
 >-
 >- 
 
 ### What assumptions should we make?
->- 
+>- *Your answer here*
 >- 
 >- 
 >- 
@@ -128,7 +128,7 @@ If Woodbot has an open loop estimator (Odometry, kinematics model):
 
 
 
-## Design Decisions:
+# Design Decisions:
 Now we like to narrow down and make decisions on which estimator we like to use.
 
 ### Requirements
@@ -139,20 +139,72 @@ Now we like to narrow down and make decisions on which estimator we like to use.
 
 >- You cannot reset the robot during the operation (You cannot rescue the robot if localization fails)
 
-###
+## Experiments
+We need to test our options so that we can conclude which option we should pick.
+
+We like to run...
+>1. Each estimator with zero inputs (stationary)
+>2. Each estimator with a constant input (circle)
+>3. Each estimator with a random input (your keyboard inputs)
+>4. Each estimator with very low friction (friction coefficient = 0.05)
+For 100 second.
+
+## Experiments Outcome
+### Option 1
+>1. Stationary case
+>   * *Your answer here*
+>   * 
+>2. Circular trajectory
+>   * *Your answer here*
+>   * 
+>3. Random trajectory
+>   * *Your answer here*
+>   * 
+>4. Low friction
+>   * *Your answer here*
+>   * 
+
+### Option 3
+>1. Stationary case
+>   * *Your answer here*
+>   * 
+>2. Circular trajectory
+>   * *Your answer here*
+>   * 
+>3. Random trajectory
+>   * *Your answer here*
+>   * 
+>4. Low friction
+>   * *Your answer here*
+>   * 
+
+### Option 4
+>1. Stationary case
+>   * *Your answer here*
+>   * 
+>2. Circular trajectory
+>   * *Your answer here*
+>   * 
+>3. Random trajectory
+>   * *Your answer here*
+>   * 
+>4. Low friction
+>   * *Your answer here*
+>   * 
 
 
-### Decisions
+
+## Decisions
+>- Since we cannot reset the state estimator...
+>- From the experiment outcome Option 1, Experiment 4...etc.
 >- 
 >- 
->- 
->- 
 
 
-#### My Conclusion: I go with Option ______ for the prototype
+### My Conclusion: I go with Option ______ for the prototype
 
-### Still Unknown, Things to be analyzed and decided later
+## Still Unknown, Things to be analyzed and decided later
 
 >- We don't know whether our physics simulation captures all uncertainty in the system.
 >- Although we can expect some kinds of uncertainties, but we don't know the magnitude of them, such as magnetic field induced by current in the circuit, lidar noises against black or too reflective surface, and wheel slipping, etc. 
-
+>- We don't know how well the estimator would perform for longer duration than 100s or in a different environment 

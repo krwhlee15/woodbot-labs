@@ -27,6 +27,103 @@ This will require you to fill out missing parts for full credits.
 ***
 
 ## Option 1: Pointy Wood
+If Woodbot has a pointy support as seen in ![pointy woodbot](../lab1/images/Woodbot.jpg)
+
+### What are the advantage and disadvantages?
+>- 
+>-
+
+### What could be edge cases where this option may become problematic?
+>- 
+>- 
+
+
+### Experiments and Observation
+We like to run the robot in:
+>1. Arena
+>   * *Your Observation*
+>   * 
+>2. Classroom floor
+>   * 
+>   * 
+>3. Some one other place you think valuable to test
+>   * 
+>   * 
+
+## Option 2: Circular Wood
+If Woodbot has a [ball bearing](https://www.iqsdirectory.com/articles/ball-bearing.html)
+
+### What are the advantage and disadvantages?
+>- 
+>-
+
+### What could be edge cases where this option may become problematic?
+>- 
+>- 
+
+
+### Experiments and Observation
+We like to run the robot in:
+>1. Arena
+>   * *Your Observation*
+>   * 
+>2. Classroom floor
+>   * 
+>   * 
+>3. Some one other place you think valuable to test
+>   * 
+>   * 
+
+## Option 3: Ball bearing
+If Woodbot has a [ball bearing](https://www.iqsdirectory.com/articles/ball-bearing.html).
+
+### What are the advantage and disadvantages?
+>- 
+>-
+
+### What could be edge cases where this option may become problematic?
+>- 
+>- 
+
+
+### Experiments and Observation
+We like to run the robot in:
+>1. Arena
+>   * *Your Observation*
+>   * 
+>2. Classroom floor
+>   * 
+>   * 
+>3. Some one other place you think valuable to test
+>   * 
+>   * 
+
+
+
+## Option 4: Ball caster
+If Woodbot has a [ball caster](https://www.pololu.com/category/45/pololu-ball-casters).
+
+### What are the advantage and disadvantages?
+>- 
+>-
+
+### What could be edge cases where this option may become problematic?
+>- 
+>- 
+
+
+### Experiments and Observation
+We like to run the robot in:
+>1. Arena
+>   * *Your Observation*
+>   * 
+>2. Classroom floor
+>   * 
+>   * 
+>3. Some one other place you think valuable to test
+>   * 
+>   * 
+
 
 ***
 

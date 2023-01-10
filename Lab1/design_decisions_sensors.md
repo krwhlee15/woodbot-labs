@@ -21,6 +21,11 @@ This will require you to fill out highlighted parts for full credits.
 - Positional Encoder
 - Inertial Measurement Unit (IMU)
 - GPS
+- Altitude sensor
+- Pressure sensor
+- Current sensor
+- Voltage sensor
+- 
 
 ***
 
@@ -64,15 +69,15 @@ If Woodbot has only one touch sensor:
 If Woodbot has only a camera:
 
 ### What kind of information can we get?
->- 
+>- *Your answer here*
 >-
 
 ### What state can we estimate? Do we need something else to do so?
->- 
+>- *Your answer here*
 >-
 
 ### What kind of problems can we solve? (applications, use cases, examples)
->- 
+>- *Your answer here*
 >- 
 
 ***
@@ -81,15 +86,15 @@ If Woodbot has only a camera:
 If Woodbot has only positional encoders on each wheel:
 
 ### What kind of information can we get? 
->- 
+>- *Your answer here*
 >-
 
 ### What state can we estimate? Do we need something else to do so?
->- 
+>- *Your answer here*
 >-
 
 ### What kind of problems can we solve? (applications, use cases, examples)
->- 
+>- *Your answer here*
 >- 
 
 ***
@@ -98,15 +103,15 @@ If Woodbot has only positional encoders on each wheel:
 If Woodbot has two lidars and IMU:
 
 ### What kind of information can we get? 
->- 
+>- *Your answer here*
 >-
 
 ### What state can we estimate? Do we need something else to do so?
->- 
+>- *Your answer here*
 >-
 
 ### What kind of problems can we solve? (applications, use cases, examples)
->- 
+>- *Your answer here*
 >- 
 
 ***
@@ -116,15 +121,15 @@ If Woodbot has two lidars and IMU:
 If Woodbot has GPS and IMU:
 
 ### What kind of information can we get? 
->- 
+>- *Your answer here*
 >-
 
 ### What state can we estimate? Do we need something else to do so?
->- 
+>- *Your answer here*
 >-
 
 ### What kind of problems can we solve? (applications, use cases, examples)
->- 
+>- *Your answer here*
 >- 
 
 ***
