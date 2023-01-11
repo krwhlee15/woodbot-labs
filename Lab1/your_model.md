@@ -30,9 +30,14 @@ The relationship between wheel angular velocity and wheel tangential velocity is
 
 Thus, under no slip condition, the robot translational velocity and angular velocity can be described as:
 
-> $V_body = Your math$
+> $`V_body = Your math`$
 > 
-> $\Omega_body = Your math$
+> $`\Omega_body = Your math`$
+> 
+> Note: for GitLab to show math you need to use 
+```
+$` latex math format `$ 
+```
 > 
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
@@ -44,7 +49,7 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 > Your kinematics model here.
 > 
-> $X' = f(X, U)$
+> $`X' = f(X, U)`$
 > 
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```

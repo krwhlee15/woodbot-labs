@@ -1,1 +1,1 @@
-pip install git+https://github.com/Suke0811/REMS.git@main
+git+https://github.com/Suke0811/REMS.git@main
