@@ -23,24 +23,25 @@ You will work with your partner to complete each lab.
 Throughout this lab series, you will conduct design decisions to select set of hardware and software for our prototype robot, Woodbot, a differential drive 2-wheel car robot.
 Then we evaluate our selections and revisit/iterate the decisions. 
 
-### Lab 1
+### Lab 1: System Modeling
 - [ ] Mathematical modeling and analysis of Woodbot
 - [ ] Python implementation of the Woodbot model
 - [ ] Design decisions on our sensor selections for Woodbot
 
-### Lab 2
+### Lab 2: Simulation
 - [ ] Implementing physics simulation of Woodbot using Webots
 - [ ] Design decisions on our state estimator for Woodbot
 
-## Lab 3
+### Lab 3: Hardware
 - [ ] Assembly and soldering of Woodbot hardware
 - [ ] Design decisions on the Woodbot support structure design
 
-## Lab 4
+### Lab 4: Analysis
 - [ ] Comparison among the mathematical model, physics simulation and hardware
 - [ ] Design experiments to compare them to conduct and revisit our design decisions
 
 
+## Design Decisions
 
 Each step helps us to decide the different parts of the final system design.
 This process help engineers to avoid time-consuming and expensive mistakes.

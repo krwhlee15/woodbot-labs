@@ -11,7 +11,7 @@ class WoodbotModel(RobotThread):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.run.DT = 0.05      # Robot run frequency
+        self.run.DT = 0.1      # Robot run frequency
         self.run.name = 'Model' # robot name
 
     def drive(self, inpt, timestamp):
@@ -24,14 +24,30 @@ class WoodbotModel(RobotThread):
         :param timestamp: float world timestamp
         :return: None
         '''
+        # saving the current input
+        self.inpt.update(inpt)
 
-        inpt = self.inpt.ndarray()      # input values in numpy array
-        state = self.state.ndarray()    # current state in numpy array
+        # get input, note they are in percent -100 to 100%
+        inpt_np = self.inpt.ndarray()      # input values in numpy array
+        inpt_nptall = self.inpt.ndtall()    # in numpy tall array
+        wh_l = self.inpt.get('wh.l')    # or get specific
+        wh_r = self.inpt.get('wh.r')
 
-        # getting dimensions
+        x = self.state.get('x')
+        y = self.state.get('y')
+        th_z = self.state.get('th_z')
+        d_th_z = self.state.get('d_th_z')
+
+        state_np = self.state.ndarray()    # current state in numpy array
+        state_nptall = self.state.ndtall()# numpay tall array
+
+        dt = self.run.DT        # delta T, 0.1sec
+
+        # getting dimensions, IDE may complain, but all variables in WoodbotDef are accessible
         W = self.dimension.get('W')
         d = self.dimension.get('d')
         R_env = self.dimension.get('R_env')
+        max_vel = self.dimension.get('max_vel')
 
         # TODO: Implement your kinematics model
 
@@ -39,15 +55,14 @@ class WoodbotModel(RobotThread):
         # Your model equation here    #
         # next_state = f(state, inpt) #
         ###############################
+        # remove this
+        next_state = state_np
 
-        next_state = np.array([0, 0, 0, 0])
 
         # save next state
         # this will set the data based on positions
         self.state.update(next_state)
 
-        # saving the current input (this is not necessary because it happens automatically)
-        self.inpt.update(inpt)
 
 
     def sense(self):
@@ -64,7 +79,7 @@ class WoodbotModel(RobotThread):
         W = self.dimension.get('W')
         d = self.dimension.get('d')
         R_env = self.dimension.get('R_env')
-
+        max_vel = self.dimension.get('max_vel')
 
         # TODO: Implement your sensor model
         ###############################

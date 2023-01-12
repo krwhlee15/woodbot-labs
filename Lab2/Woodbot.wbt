@@ -4,8 +4,8 @@ WorldInfo {
   FPS 30
 }
 Viewpoint {
-  orientation -0.3885648844466659 0.20125508651384647 0.8991739101682463 2.2698971757958595
-  position 0.8394943575614741 -1.1482680104673606 1.5204328945183607
+  orientation -0.2471131677232846 0.5962531765304345 0.7638175383003001 0.9942914344782958
+  position -1.079639459396946 -1.5103175186569473 1.3245478987924002
 }
 TexturedBackground {
 }
@@ -50,7 +50,7 @@ DEF Woodbot Transform {
           lookupTable []
         }
         DEF lidar_r DistanceSensor {
-          rotation 0 1 0 1.57
+          rotation 0 1 0 0
           name "lidar_r"
           lookupTable [
             0 0 0

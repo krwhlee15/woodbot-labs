@@ -10,14 +10,23 @@ from WoodbotModel import WoodbotModel
 OUTPUT_PATH = 'run_outputs/'
 FILE_PATH = OUTPUT_PATH + 'Model' + time_str() # this will be like: Model_current_data_time
 
-rems_update()
+# if you want to use pre defined trajectory
+USE_DEMO_TRAJECTORY = False
+
+# a nice function to automatically update the dependency
+# rems_update()
 
 o = Operator(debug_mode=True)
 
-#
-# i = FileCsvInput('path/to/inpt.csv')
-# Using  keyboard input (control Woodbot with arrow keys)
-i = KeyboardInput()
+if USE_DEMO_TRAJECTORY:
+    i = FileCsvInput('run_outputs/model_test_run.csv')
+else:
+    # Using  keyboard input (control Woodbot with arrow keys)
+    # up: straight (100%, 100%), down: backward (-100, -100)
+    # right: (100, 0), left: (0, 100)
+    # up & right: (100, 50), up & left: (50, 100)
+    # pageup: (-100, 100), pagedown: (100, -100)
+    i = KeyboardInput()
 
 #  set input
 o.set_input(i)
@@ -31,7 +40,7 @@ o.set_input(i)
 
 robot = o.add_robot(robot_def=WoodbotDef, robot=WoodbotModel,
                     outputs=(FileCsvOutput(FILE_PATH + '.csv'),
-                             AnimationOutput(FILE_PATH + '.avi')))
+                             AnimationOutput(FILE_PATH + '.gif')))
 
 
 
@@ -41,4 +50,4 @@ robot = o.add_robot(robot_def=WoodbotDef, robot=WoodbotModel,
 # start_time will let you start t=n. i.e. you want to run input file from t=5sec
 # run_speed multiply the realtime run speed. i.e. you want to debug the robot by running slow
 o.run(SimConfig(max_duration=10, dt=0.1, realtime=True, start_time=0, run_speed=1))
- 
+

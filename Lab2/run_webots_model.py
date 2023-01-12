@@ -5,9 +5,11 @@ from rems.utils import time_str, rems_update
 from rems.device.webots import WebotsBinder
 # Woodbot import
 from Lab1.WoodbotDef import WoodbotDef
+from Lab1.WoodbotModel import WoodbotModel
 
 
 OUTPUT_PATH = 'run_outputs/'
+FILE_PATH = OUTPUT_PATH + 'Model' + time_str()
 WEBOTS_FILE_PATH = OUTPUT_PATH + 'Webots' + time_str() # this will be like: Model_current_data_time
 
 # if you want to use pre defined trajectory
@@ -17,10 +19,7 @@ USE_DEMO_TRAJECTORY = False
 # a nice function to automatically update the dependency
 # rems_update()
 
-# REMS robot operator
-# this take care lower level operations
 o = Operator(debug_mode=True)
-
 
 if USE_DEMO_TRAJECTORY:
     i = FileCsvInput('run_outputs/webots_test_run.csv')
@@ -42,14 +41,18 @@ o.set_input(i)
 # FileCsvOutput -> save CSV file at the end of run with all inpt, state, output. (You can feed this file to FileCsvInput)
 # AnimationOutput -> Show the robot states realtime and save the video of it at the end.
 
-robot = o.add_robot(robot_def=WoodbotDef, robot=WebotsBinder,
+webots = o.add_robot(robot_def=WoodbotDef, robot=WebotsBinder,
                     outputs=(FileCsvOutput(WEBOTS_FILE_PATH + '.csv'),
                              AnimationOutput(WEBOTS_FILE_PATH + '.gif')))
+
+model = o.add_robot(robot_def=WoodbotDef, robot=WoodbotModel,
+                    outputs=(FileCsvOutput(FILE_PATH + '.csv'),
+                             AnimationOutput(FILE_PATH + '.gif')))
 
 
 # run the robot for 10sec with dt = 0.1.
 # realtime=True, so it'll take 10sec to finish, False will run as fast as possible
 # start_time will let you start t=n. i.e. you want to run input file from t=5sec
 # run_speed multiply the realtime run speed. i.e. you want to debug the robot by running slow
-o.run(SimConfig(max_duration=100, dt=0.1, realtime=False, start_time=0, run_speed=1))
+o.run(SimConfig(max_duration=10, dt=0.1, realtime=False, start_time=0, run_speed=1))
 
