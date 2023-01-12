@@ -89,6 +89,8 @@ class DifferentialDriveDef(RobotDefBase):
 
         # Adding mapping rule to the input
         # i.e. from keyboard arrow to left right wheel speed
+        self.dimension = DefDict()
+
         self.inpt.set_rule([KeyMapRule().arrow, KeyMapRule().joy_direct])
 
         # Sensor space definitions

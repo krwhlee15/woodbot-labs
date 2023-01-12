@@ -11,7 +11,7 @@ codes and fully implement skeleton codes in the main repository.
 in skeleton "your_model.md"
 - [ ] The completed skeleton python module WoodbotModel.py implementing the above system models 
 - [ ] Saved output from run_model.py (automatically generates all necessary outputs with a run)
-- [ ] Complete the design decisions on sensor selections in "design_decision_sensors.md". 
+- [ ] Complete the design decisions on sensor selections in "README.md". 
 - [ ] Submit a link to your forked repository with all above included
 
 You will submit above requirements by commit and push all your changes to the remote repository. 
@@ -75,6 +75,6 @@ Be sure to clearly define and describe all variables and equations, and produce 
 diagrams as necessary.
 
 In the later lab sections we will consider uncertainty of the system.
-3
+
 
 

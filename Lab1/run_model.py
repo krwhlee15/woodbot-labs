@@ -41,3 +41,4 @@ robot = o.add_robot(robot_def=WoodbotDef, robot=WoodbotModel,
 # start_time will let you start t=n. i.e. you want to run input file from t=5sec
 # run_speed multiply the realtime run speed. i.e. you want to debug the robot by running slow
 o.run(SimConfig(max_duration=10, dt=0.1, realtime=True, start_time=0, run_speed=1))
+ 

@@ -28,6 +28,11 @@ class WoodbotModel(RobotThread):
         inpt = self.inpt.ndarray()      # input values in numpy array
         state = self.state.ndarray()    # current state in numpy array
 
+        # getting dimensions
+        W = self.dimension.get('W')
+        d = self.dimension.get('d')
+        R_env = self.dimension.get('R_env')
+
         # TODO: Implement your kinematics model
 
         ###############################
@@ -37,8 +42,12 @@ class WoodbotModel(RobotThread):
 
         next_state = np.array([0, 0, 0, 0])
 
-        self.state.update(next_state)
+        # save next state
         # this will set the data based on positions
+        self.state.update(next_state)
+
+        # saving the current input (this is not necessary because it happens automatically)
+        self.inpt.update(inpt)
 
 
     def sense(self):
@@ -47,6 +56,14 @@ class WoodbotModel(RobotThread):
         Called at every timestep
         :return: output values (iterative)
         '''
+
+        inpt = self.inpt.ndarray()  # input values in numpy array
+        state = self.state.ndarray()  # current state in numpy array
+
+        # getting dimensions
+        W = self.dimension.get('W')
+        d = self.dimension.get('d')
+        R_env = self.dimension.get('R_env')
 
 
         # TODO: Implement your sensor model

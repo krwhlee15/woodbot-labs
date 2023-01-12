@@ -32,12 +32,25 @@ OUTPUT = {
     'gyro_z': AngVel(unit='rad/s'),
 }
 
+DIMENSION = {'W': float,
+             'd': float,
+             'R_env': float}
+
 
 class WoodbotDef(DifferentialDriveDef):
     def define(self, *args, **kwargs):
         super().define()
+
+        # set definitions for self.inpt
+        # self.inpt is a dictionary like custom object
+        # we can treat like dictionary, but more functions
         self.inpt.add_def(INPT)
         self.state.add_def(STATE)
         self.outpt.add_def(OUTPUT)
+
+        # adding dimension
+        self.dimension.add_def(DIMENSION)
+
+        # Robot name
         self.name = 'woodbot'
 
