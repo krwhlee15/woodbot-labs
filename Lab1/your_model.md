@@ -30,7 +30,7 @@ The relationship between wheel angular velocity and wheel tangential velocity is
 
 Thus, under no slip condition, the robot translational velocity and angular velocity can be described as:
 
-> $`V_{body} = Your math`$
+> $`V_{body} = d/2*W`$
 > 
 > $`\Omega_{body} = Your math`$
 > 
