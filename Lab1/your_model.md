@@ -32,7 +32,7 @@ Thus, under no slip condition, the robot translational velocity and angular velo
 
 > $`V_{body} = 0.5*(\frac{d}{2}*w_{left} + \frac{d}{2}*w_{right})`$
 > 
-> $`\Omega_{body} = Your math`$
+> $`\Omega_{body} = \frac{W}{2} * w_{left}-w_{right}`$
 > 
 > Note: for GitLab to show math you need to use 
 ```
