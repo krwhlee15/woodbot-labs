@@ -17,7 +17,7 @@ The robot physical dimensions are defined as in Fig. 2.
 ## Kinematics Model
 ### State
 ```
-Your state definitions here.
+Position from origin(x,y), Angle from x-axis, Translational Velocity, Angular Velocity
 ```
 
 
