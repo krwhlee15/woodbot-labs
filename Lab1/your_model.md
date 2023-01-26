@@ -52,7 +52,7 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 > Your kinematics model here.
 > 
-> $`X' = f(X, U)`$
+> $`X' = \frac{v_{left}+v_{right}}{2}*cos(\delta)`$
 > 
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
