@@ -16,10 +16,12 @@ The robot physical dimensions are defined as in Fig. 2.
 
 ## Kinematics Model
 ### State
-```
-Position from origin(x,y), Angle from x-axis, Translational Velocity, Angular Velocity
-```
 
+> Horizontal position $`x`$
+>
+> Vertical position $`y`$
+>
+> Robot's facing direction angle from x axis $`\theta`$ 
 
 ### Kinematics Model
 The 4 patterns of differential drive robot forward and tun motions are illustrated as following.
@@ -68,7 +70,9 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 ![compass](images/compass.png)
 
-> Your compass sensor model here.
+> $`y_{mag} = cos(\theta)`$ $`x_{mag} = sin(\theta)`$
+>
+> $`\theta = arccos(y_{mag})`$ or $`arcsin(x_{mag})`$
 > 
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
