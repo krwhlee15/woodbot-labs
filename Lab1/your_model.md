@@ -69,7 +69,7 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 > Your lidar sensor model here.
 > 
-> $`x_{1} and y_{1}`$ is current position
+> $`x_{1}`$ and $`y_{1}`$ is current position
 >
 > $`y = mx+ b`$
 > 
