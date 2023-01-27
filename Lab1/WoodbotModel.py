@@ -103,19 +103,19 @@ class WoodbotModel(RobotThread):
         m = np.tan(th-90)
 
         if m < 0:
-            n_xf = (2*m**2*x+2*m*y+np.sqrt((-2*m**2*x+2*m*y)**2-4*(1+m)*(m**2*x**2-2*m*y*x+y**2-R_env**2)))/(2*1+m**2)
+            n_xf = (2*m^2*x+2*m*y+np.sqrt((-2*m^2*x+2*m*y)^2-4*(1+m)*(m^2*x^2-2*m*y*x+y^2-R_env^2)))/(2*1+m^2)
         else:
-            n_xf = (2*m**2*x+2*m*y-np.sqrt((-2*m**2*x+2*m*y)**2-4*(1+m)*(m**2*x**2-2*m*y*x+y**2-R_env**2)))/(2*1+m**2)
+            n_xf = (2*m^2*x+2*m*y-np.sqrt((-2*m^2*x+2*m*y)^2-4*(1+m)*(m^2*x^2-2*m*y*x+y^2-R_env^2)))/(2*1+m^2)
         n_yf = m * n_xf + y - m + x
-        lidar_f = np.sqrt((n_xf-x)**2 + (n_yf-y)**2)
+        lidar_f = np.sqrt((n_xf-x)^2 + (n_yf-y)^2)
 
         if m < 0:
-            n_xr = (2*m**2*x+2*m*y+np.sqrt((-2*m**2*x+2*m*y)**2-4*(1+m)*(m**2*x**2-2*m*y*x+y**2-R_env**2)))/(2*1+m**2)
+            n_xr = (2*m^2*x+2*m*y+np.sqrt((-2*m^2*x+2*m*y)^2-4*(1+m)*(m^2*x^2-2*m*y*x+y^2-R_env^2)))/(2*1+m^2)
         else:
-            n_xr = (2*m**2*x+2*m*y-np.sqrt((-2*m**2*x+2*m*y)**2-4*(1+m)*(m**2*x**2-2*m*y*x+y**2-R_env**2)))/(2*1+m**2)
+            n_xr = (2*m^2*x+2*m*y-np.sqrt((-2*m^2*x+2*m*y)^2-4*(1+m)*(m^2*x^2-2*m*y*x+y^2-R_env^2)))/(2*1+m^2)
         n_yr = m * n_xr + y - m + x
 
-        lidar_r = np.sqrt((n_xr-x)**2 + (n_yr-y)**2)
+        lidar_r = np.sqrt((n_xr-x)^2 + (n_yr-y)^2)
 
 
         output = np.array([lidar_f, lidar_r, np.cos(th),np.sin(th), W_body])
