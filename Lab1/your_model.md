@@ -52,7 +52,7 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 > Your kinematics model here.
 > 
-> $`X' = {V_{body}}*cos(w_{body})`$
+> $`X' = {V_{body}}*cos(w_{body})*t + X`$
 >
 > $`Y' = {V_{body}}*sin(w_{body})`$
 > 
