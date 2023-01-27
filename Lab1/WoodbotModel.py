@@ -55,11 +55,6 @@ class WoodbotModel(RobotThread):
         # Your model equation here    #
         # next_state = f(state, inpt) #
         ###############################
-        w_l = (wh_l/100) * max_vel
-        w_r = (wh_r/100) * max_vel
-
-        V_body = (d/4)(w_l + w_r)
-        W_body = ((W*d)/4)(w_r + w_l)
 
         x_p = V_body * np.cos(th_z) * dt 
         y_p = V_body * np.sin(th_z) * dt
@@ -96,7 +91,34 @@ class WoodbotModel(RobotThread):
         # output = h(state, inpt)     #
         ###############################
 
+        w_l = (wh_l/100) * max_vel
+        w_r = (wh_r/100) * max_vel
 
+        V_body = (d/4)(w_l + w_r)
+        W_body = ((W*d)/4)(w_r + w_l)
+
+        x = state[0]
+        y = state[1]
+        th = state[2]
+        m = np.tan(th-90)
+
+        if m < 0:
+            n_xf = (2*m**2*x+2*m*y+np.sqrt((-2*m**2*x+2*m*y)**2-4*(1+m)*(m**2*x**2-2*m*y*x+y**2-R_env**2)))/(2*1+m**2)
+        else:
+            n_xf = (2*m**2*x+2*m*y-np.sqrt((-2*m**2*x+2*m*y)**2-4*(1+m)*(m**2*x**2-2*m*y*x+y**2-R_env**2)))/(2*1+m**2)
+        n_yf = m * n_xf + y - m + x
+        lidar_f = np.sqrt((n_xf-x)**2 + (n_yf-y)**2)
+
+        if m < 0:
+            n_xr = (2*m**2*x+2*m*y+np.sqrt((-2*m**2*x+2*m*y)**2-4*(1+m)*(m**2*x**2-2*m*y*x+y**2-R_env**2)))/(2*1+m**2)
+        else:
+            n_xr = (2*m**2*x+2*m*y-np.sqrt((-2*m**2*x+2*m*y)**2-4*(1+m)*(m**2*x**2-2*m*y*x+y**2-R_env**2)))/(2*1+m**2)
+        n_yr = m * n_xr + y - m + x
+
+        lidar_r = np.sqrt((n_xr-x)**2 + (n_yr-y)**2)
+
+
+        output = np.array([lidar_f, lidar_r, np.cos(th),np.sin(th), W_body])
 
         output = np.array([0, 0, 0, 0, 0])
         self.outpt.update(output)
