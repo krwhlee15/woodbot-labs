@@ -85,6 +85,8 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 >
 > $`x_{1} = -(\sqrt{R^2-x^2}-(tan(\theta) * x + y_{1}))/m `$
 >
+> $`y_{1} = \sqrt{R^2 -x^2} -tan(\theta) + m*x_{1} `$
+>
 > $`d = \sqrt{(x-x_{1}))^2 + ((y-y_{1}))^2}`$
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
