@@ -52,9 +52,11 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 > Your kinematics model here.
 > 
-> $`X' = {V_{body}}*cos(w_{body})*t + X`$
+> $`X' = {V_{body}}*cos(\theta_{body})*\Delta t + X`$
 >
-> $`Y' = {V_{body}}*sin(w_{body})`$
+> $`Y' = {V_{body}}*sin(\theta_{body})*\Delta t + Y`$
+>
+> $`\Theta' = {\omega_{body})*\Delta t + \Theta`$
 > 
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
