@@ -52,9 +52,9 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 > Your kinematics model here.
 > 
-> $`X' = \frac{V_{body}}{2}*cos(w_{body})`$
+> $`X' = {V_{body}}*cos(w_{body})`$
 >
-> $`Y' = \frac{V_{body}}{2}*sin(w_{body})`$
+> $`Y' = {V_{body}}{2}*sin(w_{body})`$
 > 
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
