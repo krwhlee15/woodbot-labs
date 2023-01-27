@@ -69,13 +69,13 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 > Your lidar sensor model here.
 > 
-> x_{1} and y_{1} is current position
+> $`x_{1} and y_{1}`$ is current position
 >
-> y-y_{1} = m(x-x_{1})
+> $`y-y_{1} = m(x-x_{1})`$
 > 
-> m = tan(\theta)
+> $`m = tan(\theta)`$
 >
-> d = \sqrt{(\sqrt{R^2 - x^2}-x_{1})^2 + (\sqrt{R^2 - y^2}-y_{1})^2}
+> $`d = \sqrt{(\sqrt{R^2 - x^2}-x_{1})^2 + (\sqrt{R^2 - y^2}-y_{1})^2}`$
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
 
