@@ -54,7 +54,7 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 > 
 > $`X' = {V_{body}}*cos(w_{body})`$
 >
-> $`Y' = {V_{body}}{2}*sin(w_{body})`$
+> $`Y' = {V_{body}}*sin(w_{body})`$
 > 
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
