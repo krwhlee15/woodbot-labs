@@ -56,7 +56,7 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 >
 > $`Y' = {V_{body}}*sin(\theta_{body})*\Delta t + Y`$
 >
-> $`\Theta' = {\omega_{body})*\Delta t + \Theta`$
+> $`\theta' = {\omega_{body}}*\Delta t + \theta`$
 > 
 > You can alternatively paste your math in images, such as:
 ```![my math scan](path/to/image.jpg)```
