@@ -71,9 +71,15 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 > 
 > $`x_{1} and y_{1}`$ is current position
 >
-> $`y-y_{1} = m(x-x_{1})`$
+> $`y = mx+ b`$
 > 
 > $`m = tan(\theta)`$
+>
+> $`b = y_{1} - m*x_{1}`$
+>
+> $`R^2 = x^2 + y^2`$
+>
+> $`R^2 = x^2 + (tan(\theta)*(x-x_{1}`$
 >
 > $`d = \sqrt{(\sqrt{R^2 - x^2}-x_{1})^2 + (\sqrt{R^2 - y^2}-y_{1})^2}`$
 > You can alternatively paste your math in images, such as:
