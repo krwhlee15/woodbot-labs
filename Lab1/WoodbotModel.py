@@ -64,9 +64,8 @@ class WoodbotModel(RobotThread):
         x_p = V_body * np.cos(th_z) * dt 
         y_p = V_body * np.sin(th_z) * dt
         th_p = th_z + (W_body * dt)
-        d_th_p = W_body
 
-        next_state = np.array([x_p, y_p, th_p, d_th_p])
+        next_state = np.array([x_p, y_p, th_p])
 
 
         # save next state
@@ -96,6 +95,8 @@ class WoodbotModel(RobotThread):
         # Your model equation here    #
         # output = h(state, inpt)     #
         ###############################
+
+
 
         output = np.array([0, 0, 0, 0, 0])
         self.outpt.update(output)
