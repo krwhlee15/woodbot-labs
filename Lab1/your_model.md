@@ -77,9 +77,11 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 >
 > $`b = y_{1} - m*x_{1}`$
 >
+> $`y = tan(\theta) * x + y_{1} - m*x_{1} `$
+>
 > $`R^2 = x^2 + y^2`$
 >
-> $`R^2 = x^2 + (tan(\theta)*(x-x_{1}`$
+> $`R^2 = x^2 + (tan(\theta) * x + y_{1} - m*x_{1})^2`$
 >
 > $`d = \sqrt{(\sqrt{R^2 - x^2}-x_{1})^2 + (\sqrt{R^2 - y^2}-y_{1})^2}`$
 > You can alternatively paste your math in images, such as:
