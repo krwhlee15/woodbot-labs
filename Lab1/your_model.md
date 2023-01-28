@@ -93,7 +93,9 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 ![compass](images/compass.png)
 
-> $`y_{mag} = cos(\theta)`$ $`x_{mag} = sin(\theta)`$
+> $`y_{mag} = cos(\theta)`$
+>
+> $`x_{mag} = sin(\theta)`$
 >
 > $`\theta = arccos(y_{mag})`$ or $`arcsin(x_{mag})`$
 > 
