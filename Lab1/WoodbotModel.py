@@ -55,9 +55,11 @@ class WoodbotModel(RobotThread):
         # Your model equation here    #
         # next_state = f(state, inpt) #
         ###############################
+        V_body = (d/4)(w_l + w_r)
+        W_body = ((W*d)/4)(w_r + w_l)
 
-        x_p = V_body * np.cos(th_z) * dt 
-        y_p = V_body * np.sin(th_z) * dt
+        x_p = V_body * np.cos(th_z) * dt + x
+        y_p = V_body * np.sin(th_z) * dt + y
         th_p = th_z + (W_body * dt)
 
         next_state = np.array([x_p, y_p, th_p])
@@ -93,9 +95,6 @@ class WoodbotModel(RobotThread):
 
         w_l = (wh_l/100) * max_vel
         w_r = (wh_r/100) * max_vel
-
-        V_body = (d/4)(w_l + w_r)
-        W_body = ((W*d)/4)(w_r + w_l)
 
         x = state[0]
         y = state[1]
