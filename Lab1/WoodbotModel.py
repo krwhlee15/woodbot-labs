@@ -49,21 +49,18 @@ class WoodbotModel(RobotThread):
         R_env = self.dimension.get('R_env')
         max_vel = self.dimension.get('max_vel')
 
+        w_l = (max_vel/100)*wh_l
+        w_r = (max_vel/100)*wh_r
+
         # TODO: Implement your kinematics model
 
         ###############################
         # Your model equation here    #
         # next_state = f(state, inpt) #
         ###############################
-        V_body = (d/4)(w_l + w_r)
-        W_body = ((W*d)/4)(w_r + w_l)
 
-        x_p = V_body * np.cos(th_z) * dt + x
-        y_p = V_body * np.sin(th_z) * dt + y
-        th_p = th_z + (W_body * dt)
-
-        next_state = np.array([x_p, y_p, th_p])
-
+        v_body = (d/4)*(w_l + w_r)
+        next_state = state_np + dt*np.array([v_body*np.cos(th_z), v_body*np.sin(th_z), (d/(2*W))*(w_r - w_l), 0])
 
         # save next state
         # this will set the data based on positions
@@ -87,39 +84,24 @@ class WoodbotModel(RobotThread):
         R_env = self.dimension.get('R_env')
         max_vel = self.dimension.get('max_vel')
 
+        x = self.state.get('x')
+        y = self.state.get('y')
+        th_z = self.state.get('th_z')
+        d_th_z = self.state.get('d_th_z')
+
+
         # TODO: Implement your sensor model
         ###############################
         # Your model equation here    #
         # output = h(state, inpt)     #
         ###############################
 
-        w_l = (wh_l/100) * max_vel
-        w_r = (wh_r/100) * max_vel
+        output = np.array([np.sqrt((x * np.cos(th_z) + y * np.sin(th_z)) ** 2 + R_env ** 2 - x ** 2 - y ** 2) - (x * np.cos(th_z) + y * np.sin(th_z)),
+                           np.sqrt((x * np.sin(th_z) - y * np.cos(th_z)) ** 2 + R_env ** 2 - x ** 2 - y ** 2) - (x * np.sin(th_z) - y * np.cos(th_z)),
+                           np.sin(th_z),
+                           np.cos(th_z),
+                           d_th_z])
 
-        x = state[0]
-        y = state[1]
-        th = state[2]
-        m = np.tan(th-90)
-
-        if m < 0:
-            n_xf = (2*m^2*x+2*m*y+np.sqrt((-2*m^2*x+2*m*y)^2-4*(1+m)*(m^2*x^2-2*m*y*x+y^2-R_env^2)))/(2*1+m^2)
-        else:
-            n_xf = (2*m^2*x+2*m*y-np.sqrt((-2*m^2*x+2*m*y)^2-4*(1+m)*(m^2*x^2-2*m*y*x+y^2-R_env^2)))/(2*1+m^2)
-        n_yf = m * n_xf + y - m + x
-        lidar_f = np.sqrt((n_xf-x)^2 + (n_yf-y)^2)
-
-        if m < 0:
-            n_xr = (2*m^2*x+2*m*y+np.sqrt((-2*m^2*x+2*m*y)^2-4*(1+m)*(m^2*x^2-2*m*y*x+y^2-R_env^2)))/(2*1+m^2)
-        else:
-            n_xr = (2*m^2*x+2*m*y-np.sqrt((-2*m^2*x+2*m*y)^2-4*(1+m)*(m^2*x^2-2*m*y*x+y^2-R_env^2)))/(2*1+m^2)
-        n_yr = m * n_xr + y - m + x
-
-        lidar_r = np.sqrt((n_xr-x)^2 + (n_yr-y)^2)
-
-
-        output = np.array([lidar_f, lidar_r, np.cos(th),np.sin(th), W_body])
-
-        output = np.array([0, 0, 0, 0, 0])
         self.outpt.update(output)
         return self.outpt
 
