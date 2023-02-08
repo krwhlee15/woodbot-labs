@@ -52,33 +52,37 @@ If Woodbot has only one touch sensor:
 If Woodbot has only one touch sensor:
 
 ### What kind of information can we get? 
->- *Your answer here*
->-
+>- 2 Binary (boolean) data
+>- Contact detections in 2 planes
+>- Obstacle and wall detections
 
 ### What state can we estimate?
->-  *Your answer here*
->- 
+>- If there is a physical contact or not
+>- Cannot estimate robot local or global states
+>- We need a rigid wall and physical contacts should be allowed
 
 ### What kind of problems can we solve? (applications, use cases, examples)
 
->- *Your answer here*
->- 
+>- Maze solving 
+>- A box that requires the contact points of 2 people
+>- A simple puzzle game
 
 ***
 ## Option 3: Camera
 If Woodbot has only a camera:
 
 ### What kind of information can we get?
->- *Your answer here*
->-
+>- Objects in front of the woodbot
+>- The terrain in front of the woodbot
+>- Light levels and distance
 
 ### What state can we estimate? Do we need something else to do so?
->- *Your answer here*
->-
+>- If there is an object in front of the woodbot
+>- If there is a path forward that the woodbot can take
 
 ### What kind of problems can we solve? (applications, use cases, examples)
->- *Your answer here*
->- 
+>- Can identify certain objects and go towards them
+>- Can navigate terrain more effectively
 
 ***
 
@@ -86,16 +90,15 @@ If Woodbot has only a camera:
 If Woodbot has only positional encoders on each wheel:
 
 ### What kind of information can we get? 
->- *Your answer here*
->-
+>- The positions of the woodbot
 
 ### What state can we estimate? Do we need something else to do so?
->- *Your answer here*
->-
+>- If the woodbot is moving or not
+>- The direction the woodbot is facing
 
 ### What kind of problems can we solve? (applications, use cases, examples)
->- *Your answer here*
->- 
+>- Given a flat terrain or a terrain that does not involve obstacles, can go to a coordinate and come back
+>- Can run a race if the track is known beforehand
 
 ***
 
@@ -103,16 +106,17 @@ If Woodbot has only positional encoders on each wheel:
 If Woodbot has two lidars and IMU:
 
 ### What kind of information can we get? 
->- *Your answer here*
->-
+>- Objects in front of the woodbot
+>- Distance of terrain in front and around the woodbot
+>- Awareness of everything in 2 dimensions
 
 ### What state can we estimate? Do we need something else to do so?
->- *Your answer here*
->-
+>- If there is something within a certain range
+>- If the woodbot is moving
 
 ### What kind of problems can we solve? (applications, use cases, examples)
->- *Your answer here*
->- 
+>- Can navigate terrain even better than before
+>- Can deliver a payload to a certain location
 
 ***
 
@@ -121,16 +125,18 @@ If Woodbot has two lidars and IMU:
 If Woodbot has GPS and IMU:
 
 ### What kind of information can we get? 
->- *Your answer here*
->-
+>- Location of the woodbot
+>- The speed of the woodbot
 
 ### What state can we estimate? Do we need something else to do so?
->- *Your answer here*
->-
+>- If the woodbot is moving
+>- The location of the woodbot
+>- The direction of the woodbot
 
 ### What kind of problems can we solve? (applications, use cases, examples)
->- *Your answer here*
->- 
+>- Can create a robot to drive to a certain location
+>- Can navigate a known path
+>- If the location of a trapped person is known, can deliver objects to that person
 
 ***
 ## Design Decisions:

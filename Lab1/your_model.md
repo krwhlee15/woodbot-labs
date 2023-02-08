@@ -34,7 +34,7 @@ Thus, under no slip condition, the robot translational velocity and angular velo
 
 > $`V_{body} = 0.5*(\frac{d}{2}*w_{left} + \frac{d}{2}*w_{right})`$
 > 
-> $`\Omega_{body} = \frac{W}{2} * (\frac{d}{2}*w_{right}-\frac{d}{2}*w_{left})`$
+> $`\Omega_{body} = \frac{1}{W} * (\frac{d}{2}*w_{right}-\frac{d}{2}*w_{left})`$
 > 
 > Note: for GitLab to show math you need to use 
 ```
@@ -93,7 +93,9 @@ Which now can be expressed in a 1st order system model (kinematics model) as:
 
 ![compass](images/compass.png)
 
-> $`y_{mag} = cos(\theta)`$ $`x_{mag} = sin(\theta)`$
+> $`y_{mag} = cos(\theta)`$
+>
+> $`x_{mag} = sin(\theta)`$
 >
 > $`\theta = arccos(y_{mag})`$ or $`arcsin(x_{mag})`$
 > 
