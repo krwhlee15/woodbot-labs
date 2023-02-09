@@ -13,7 +13,7 @@ FILE_PATH = OUTPUT_PATH + 'Model' + time_str()
 WEBOTS_FILE_PATH = OUTPUT_PATH + 'Webots' + time_str() # this will be like: Model_current_data_time
 
 # if you want to use pre defined trajectory
-USE_DEMO_TRAJECTORY = False
+USE_DEMO_TRAJECTORY = True
 
 
 # a nice function to automatically update the dependency
@@ -22,14 +22,14 @@ USE_DEMO_TRAJECTORY = False
 o = Operator(debug_mode=True)
 
 if USE_DEMO_TRAJECTORY:
-    i = FileCsvInput('run_outputs/webots_test_run.csv')
+    i = FileCsvInput('run_outputs/Webots02_09_2023_15_35_43.csv')
 else:
     # Using  keyboard input (control Woodbot with arrow keys)
     # up: straight (100%, 100%), down: backward (-100, -100)
     # right: (100, 0), left: (0, 100)
     # up & right: (100, 50), up & left: (50, 100)
     # pageup: (-100, 100), pagedown: (100, -100)
-    i = KeyboardInput()
+    i = KeyboardInput(init_state=True)
 
 #  set input
 o.set_input(i)
