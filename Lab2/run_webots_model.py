@@ -22,7 +22,7 @@ USE_DEMO_TRAJECTORY = True
 o = Operator(debug_mode=True)
 
 if USE_DEMO_TRAJECTORY:
-    i = FileCsvInput('run_outputs/Webots02_09_2023_15_35_43.csv')
+    i = FileCsvInput('run_outputs/Webots02_09_2023_17_17_51.csv')
 else:
     # Using  keyboard input (control Woodbot with arrow keys)
     # up: straight (100%, 100%), down: backward (-100, -100)
