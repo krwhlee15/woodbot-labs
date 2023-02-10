@@ -90,22 +90,24 @@ If Woodbot has an open loop estimator (Odometry, kinematics model):
 
 ### What do we need to implement these estimators?
 #### Option 5 (2 Lidars & IMU)
->- *Your answer here*
->- 
->- 
->- 
+>- Inverse of Lidar measurement model
+>- Compass Inverse model
+>- IMU raw measurements
+>- Error implementation with filter
+>- Update step basd on measurements
+
 
 ### What kind of information can or cannot we get?
->- *Your answer here*
->-
->-
->- 
+>- Estimate of state
+>- We can get a correction of the states
+>- Based on errors, a fix of state
+>- Filter noises and potential errors
 
 ### What assumptions should we make?
->- *Your answer here*
->- 
->- 
->- 
+>- Known initial state
+>- No slip state
+>- No disturbance
+>- Known robot dimensions
 
 ***
 ## **OPTIONAL** (Option 4: Closed loop estimators, Particle filtering)
