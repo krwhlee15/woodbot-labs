@@ -14,6 +14,17 @@ Depending on uncertainties we have in the system and requirements, our decisions
 This will require you to fill out missing parts for full credits.
 
 ***
+## Merge command
+```bash
+git remote add upstream https://git.capstone.uclalemur.com/staff/woodbot-labs
+git fetch upstream
+git merge upstream/main
+# If you get unrelated history error, you can force merging with
+git merge upstream/main −−allow−unrelated−histories
+```
+
+
+***
 
 ## List of estimators:
 * Open loop estimators
@@ -97,7 +108,7 @@ If Woodbot has an open loop estimator (Odometry, kinematics model):
 >- 
 
 ***
-## Option 4: Closed loop estimators, Particle filtering
+## **OPTIONAL** (Option 4: Closed loop estimators, Particle filtering)
 If Woodbot has an open loop estimator (Odometry, kinematics model):
 
 ### What do we need to implement these estimators?
@@ -143,52 +154,39 @@ Now we like to narrow down and make decisions on which estimator we like to use.
 We need to test our options so that we can conclude which option we should pick.
 
 We like to run...
->1. Each estimator with zero inputs (stationary)
->2. Each estimator with a constant input (circle)
->3. Each estimator with a random input (your keyboard inputs)
->4. Each estimator with very low friction (friction coefficient = 0.05)
-For 100 second.
+>1. The estimator with a constant input (circle)
+>2. The estimator with repeated inputs (straight back and forth)
+>3. The estimator with random inputs (your keyboard inputs)
+For 10 second.
+
+### Instructions
+> * set Webots worldInfo >> randomSeed to -1 
+> * Save the world
+> * Use run_webots_model.py to run both webots and your kinematics model from lab 1.
+> * Your kinematics model can be considered as your open-loop estimator (Option 1), which assume no noise at all and only based on joint velocities
+> * Webots states are in this case 'real robot' with noises. 
+
+> 1. Use keyboard to create trajectories for each case
+> 2. Use the csv file to run the robot
+>    * set USE_DEMO_TRAJECTORY = True
+>    * change file name appropriately for FileCsvInput('file_path.csv')
+> 3. Run each case three times. 
+> 4. Compare your kinematics and webots (x, y) states
+>   * what is the error between these two trajectories? Use [mean absolute percentage errors](https://www.statology.org/mape-excel/#:~:text=Recall%20that%20the%20absolute%20percent,percent%20error%20for%20each%20row.)
+>   * what is the error between two trajectories from the same robots
+>   * Plot figures and attach here.
+> 5. Compare your magnetometer measurements in the same way
+> 6. Optional: Compare your lidar measurements in the same way
+
 
 ## Experiments Outcome
-### Option 1
->1. Stationary case
+>1. Circular trajectory
 >   * *Your answer here*
 >   * 
->2. Circular trajectory
->   * *Your answer here*
->   * 
->3. Random trajectory
->   * *Your answer here*
->   * 
->4. Low friction
->   * *Your answer here*
->   * 
-
-### Option 3
->1. Stationary case
->   * *Your answer here*
->   * 
->2. Circular trajectory
+>2. back and forth trajectory
 >   * *Your answer here*
 >   * 
 >3. Random trajectory
->   * *Your answer here*
->   * 
->4. Low friction
->   * *Your answer here*
->   * 
-
-### Option 4
->1. Stationary case
->   * *Your answer here*
->   * 
->2. Circular trajectory
->   * *Your answer here*
->   * 
->3. Random trajectory
->   * *Your answer here*
->   * 
->4. Low friction
 >   * *Your answer here*
 >   * 
 
@@ -196,7 +194,7 @@ For 100 second.
 
 ## Decisions
 >- Since we cannot reset the state estimator...
->- From the experiment outcome Option 1, Experiment 4...etc.
+>- From the experiment outcome 3...etc. 
 >- 
 >- 
 
