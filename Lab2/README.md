@@ -200,13 +200,13 @@ For 10 second.
 
 
 ## Decisions
->- Since we cannot reset the state estimator...
->- From the experiment outcome 3...etc. 
->- 
->- 
+>- Since we cannot reset the state estimator, we will need to adjust the errors at each step
+>- From the experiment outcome 3, we see that there is a signifcant amount of error that occurs for the models that we must account for.
+>- We can use a lowpass filter and also filter noise.
+>- We can try to limit the amount of noise introduced to the system and also fix any potential errors.
 
 
-### My Conclusion: I go with Option ______ for the prototype
+### My Conclusion: I go with Option 2 for the prototype
 
 ## Still Unknown, Things to be analyzed and decided later
 
