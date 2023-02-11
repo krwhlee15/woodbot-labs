@@ -186,7 +186,7 @@ For 10 second.
 >   * The models have state error of 15.7 and magnometer errors of 19.3.
     ![errors](/Lab2/images/circlemodel.PNG)
 >   * The webots have state errors of 22.61 and magnometer errors of 6.72.
-    ![errors](/Lab2/images/circlewebot.PNG)
+    ![errors](/Lab2/images/webotcircle.PNG)
 >2. back and forth trajectory
 >   * The models have state error of 13.2 and magnometer errors of 19.3.
     ![errors](/Lab2/images/backforthmodel.PNG)
