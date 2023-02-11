@@ -184,19 +184,19 @@ For 10 second.
 ## Experiments Outcome
 >1. Circular trajectory
 >   * The models have state error of 15.7 and magnometer errors of 19.3.
-    ![errors](Lab2/images/circlemodel.png)
+    ![errors](/Lab2/images/circlemodel.png)
 >   * The webots have state errors of 22.61 and magnometer errors of 6.72.
-    ![errors](Lab2/images/circlewebot.png)
+    ![errors](/Lab2/images/circlewebot.png)
 >2. back and forth trajectory
 >   * The models have state error of 13.2 and magnometer errors of 19.3.
-    ![errors](Lab2/images/backforthmodel.png)
+    ![errors](/Lab2/images/backforthmodel.png)
 >   * The webots have state errors of 30.61 and magnometer errors of 70.82.
-    ![errors](Lab2/images/backforthwebot.png)
+    ![errors](/Lab2/images/backforthwebot.png)
 >3. Random trajectory
 >   * The models have state error of 26.48 and magnometer errors of 34.97.
-    ![errors](Lab2/images/randommodel.png)
+    ![errors](/Lab2/images/randommodel.png)
 >   * The webots have state errors of 16.65 and magnometer errors of 7.91.
-    ![errors](Lab2/images/randomwebot.png)
+    ![errors](/Lab2/images/randomwebot.png)
 
 
 ## Decisions
