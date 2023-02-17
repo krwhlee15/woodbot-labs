@@ -183,25 +183,30 @@ For 10 second.
 
 ## Experiments Outcome
 >1. Circular trajectory
->   * *Your answer here*
->   * 
+>   * The models have state error of 15.7 and magnometer errors of 19.3.
+    ![errors](/Lab2/images/circlemodel.PNG)
+>   * The webots have state errors of 22.61 and magnometer errors of 6.72.
+    ![errors](/Lab2/images/webotcircle.PNG)
 >2. back and forth trajectory
->   * *Your answer here*
->   * 
+>   * The models have state error of 13.2 and magnometer errors of 19.3.
+    ![errors](/Lab2/images/backforthmodel.PNG)
+>   * The webots have state errors of 30.61 and magnometer errors of 70.82.
+    ![errors](/Lab2/images/backforthwebot.PNG)
 >3. Random trajectory
->   * *Your answer here*
->   * 
-
+>   * The models have state error of 26.48 and magnometer errors of 34.97.
+    ![errors](/Lab2/images/randommodel.PNG)
+>   * The webots have state errors of 16.65 and magnometer errors of 7.91.
+    ![errors](/Lab2/images/randomwebot.PNG)
 
 
 ## Decisions
->- Since we cannot reset the state estimator...
->- From the experiment outcome 3...etc. 
->- 
->- 
+>- Since we cannot reset the state estimator, we will need to adjust the errors at each step
+>- From the experiment outcome 3, we see that there is a signifcant amount of error that occurs for the models that we must account for.
+>- We can use a lowpass filter and also filter noise.
+>- We can try to limit the amount of noise introduced to the system and also fix any potential errors.
 
 
-### My Conclusion: I go with Option ______ for the prototype
+### My Conclusion: I go with Option 2 for the prototype
 
 ## Still Unknown, Things to be analyzed and decided later
 
