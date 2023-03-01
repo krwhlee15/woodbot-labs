@@ -43,6 +43,7 @@ o.set_input(i)
 # AnimationOutput -> Show the robot states realtime and save the video of it at the end.
 
 robot = o.add_robot(robot_def=WoodbotDef, robot=WoodbotHard,
+                    robot_args=dict(target='ws://192.168.200.180:80'),
                     outputs=(FileCsvOutput(WEBOTS_FILE_PATH + '.csv'),
                              AnimationOutput(WEBOTS_FILE_PATH + '.gif')))
 
@@ -51,5 +52,5 @@ robot = o.add_robot(robot_def=WoodbotDef, robot=WoodbotHard,
 # realtime=True, so it'll take 10sec to finish, False will run as fast as possible
 # start_time will let you start t=n. i.e. you want to run input file from t=5sec
 # run_speed multiply the realtime run speed. i.e. you want to debug the robot by running slow
-o.run(SimConfig(max_duration=10, dt=0.1, realtime=False, start_time=0, run_speed=1))
+o.run(SimConfig(max_duration=10, dt=0.1, realtime=True, start_time=0, run_speed=1))
 
