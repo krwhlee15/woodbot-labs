@@ -34,6 +34,12 @@
 - But still run others for comparisons at least once
 - For the math model, you can do realtime=False and run as fast as possible
 
+## Wifi
+Connect to woodbot-wifi
+- password is goodwoodbot
+- in firmware, change hostname something unique
+- flash the code and open serial monitor to see your woodbot ip address
+- You need to replace your ip in run_woodbot.py etc.
 
 ## CoM Allocation
 - Total weight of the actual hardware is 0.12kg
