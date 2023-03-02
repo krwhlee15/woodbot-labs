@@ -1,0 +1,6 @@
+timestamp,inpt.wh.l,inpt.wh.r,state.x,state.y,state.th_z,state.d_th_z,outpt.lidar_f,outpt.lidar_r,outpt.mag_x,outpt.mag_y,outpt.gyro_z, comments
+0.0,0.0,0.0,-0.0,-0.0,-0.0,-0.0,0.0,0.0,-0.0,-0.0,-0.0,      //Init state
+0.6,100.0,100.0,-0.0,-0.0,-0.0,-0.0,0.0,0.0,-0.0,-0.0,-0.0,  // move straight till t=0.5s
+1.2,100.0,0.0,-0.0,-0.0,-0.0,-0.0,0.0,0.0,-0.0,-0.0,-0.0,    // Turn till t=1.0s
+1.99,-100.0,100.0,-0.0,-0.0,-0.0,-0.0,0.0,0.0,-0.0,-0.0,-0.0,// Spin till t=10.0s
+1000.1,0.0,0.0,-0.0,-0.0,-0.0,-0.0,0.0,0.0,-0.0,-0.0,-0.0      // End of the trajectory (Robot stops at t=2s in this example)

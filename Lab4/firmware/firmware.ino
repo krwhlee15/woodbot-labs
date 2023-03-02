@@ -14,15 +14,13 @@
 
 
 // Constants
-const char* ssid = "romela_robocup_2G";
-const char* password = "RoMeLa_Lab_UCLA";
-String hostname = "ESP_01";
+const char* ssid = "woodbot-wifi";
+const char* password = "goodwoodbot";
+String hostname = "My_Great_Woodbot";
 int left_conv;
 int right_conv;
 int left_flag;
 int right_flag;
-
-
 
 
 /*
@@ -79,9 +77,24 @@ Servo servo_J9;                                     // Servo PWM
 CRGB leds[NUM_LEDS];                             // Neo LED
 PCF8574 pcf8574(IO_EXPANDER, SDA_PIN, SCL_PIN);  // IO expander
 
+// lidar addresss
+#define LOX_J2_ADDRESS 0x20
+#define LOX_J3_ADDRESS 0x21
+#define LOX_J4_ADDRESS 0x22
+#define LOX_J5_ADDRESS 0x23
+
+
 // Servo settings for FS90r
 #define WIDTH_MIN 700
 #define WIDTH_MAX 2300
+
+#define num_sensors  5
+int16_t sensors[num_sensors];
+#define INDEX_LIDAR_F 0
+#define INDEX_LIDAR_R 1
+#define INDEX_MAG_X 2
+#define INDEX_MAG_Y 3
+#define INDEX_GYRO 4
 
 
 
@@ -193,6 +206,11 @@ void read_compass() {
   y = compass.getY();
   z = compass.getZ();
 
+// update the data array to send back
+  sensors[INDEX_MAG_X] = x;
+  sensors[INDEX_MAG_Y] = y;
+
+
   Serial.print("X: ");
   Serial.print(x);
   Serial.print(" Y: ");
@@ -223,14 +241,10 @@ void servo_setup() {
   Serial.println("Servos are ready");
 }
 
-
-
-
 void drive(int right, int left) {
   servo_J7.write(180 - left);
   servo_J9.write(right);
 }
-
 
 
 void read_imu(){
@@ -251,6 +265,8 @@ void read_imu(){
   Serial.print(" \tZ: ");
   Serial.print(accel.acceleration.z);
   Serial.println(" m/s^2 ");
+
+  sensors[INDEX_GYRO] = gyro.gyro.z
 
   /* Display the results (rotation is measured in rad/s) */
   Serial.print("\t\tGyro X: ");
@@ -318,7 +334,7 @@ void onWebSocketEvent(uint8_t num,
     // Client has disconnected
     case WStype_DISCONNECTED:
       Serial.printf("[%u] Disconnected!\n", num);
-      drive(90, 90)
+      drive(90, 90);
       break;
 
     // New client has connected
@@ -334,21 +350,15 @@ void onWebSocketEvent(uint8_t num,
       }
 
     case WStype_BIN:
-      Serial.printf("[%u] Connection from ", num);
-      Serial.printf("[%u] Got binary of length ", length);
-      for (int i = 0; i < length; i++)
-        Serial.printf("[%u]     char :  ", payload[i]);
-
       if (payload[0] == '~') {
-        Serial.print('drive: ');
-        Serial.print(180 - payload[1], payload[2]);
         drive(payload[1], payload[2]);
+      }else if(payload[0] == 'S') {
+        webSocket.sendTXT(num, );
       }
 
 
     // Echo text message back to client
     case WStype_TEXT:
-      Serial.printf("[%u] Text: %s\n", num, payload);
       webSocket.sendTXT(num, payload);
 
       //...BUT ACTIVATED BY WEB SOCKET TEXT COMMANDS LIKE PAPERBOT
@@ -356,10 +366,12 @@ void onWebSocketEvent(uint8_t num,
         if (payload[1] == 'F') {
         }
       }
-      if (payload[0] == '~')
-        Serial.print('drive: ');
-      Serial.print(180 - payload[1], payload[2]);
+      if (payload[0] == '~'){
       drive(payload[1], payload[2]);
+      }else if(payload[1] == 'S') {
+                  webSocket.sendBIN()(id, sensors, num_sensors);
+          }
+
       break;
 
     // For everything else: do nothing

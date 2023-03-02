@@ -1,17 +1,22 @@
 from rems import Operator, SimConfig
-from rems.inputs import FileCsvInput, KeyboardInput
+from rems.inputs import FileCsvInput, KeyboardInput, JoystickInput
 from rems.outputs import FileCsvOutput, AnimationOutput
 from rems.utils import time_str, rems_update
 from rems.robots.differential_drive import WoodbotHard
 # Woodbot import
 from Lab1.WoodbotDef import WoodbotDef
 
+USE_TRAJECTORY = 'traj'
+USE_JOYSTICK = 'joystick'
+USE_KEYBOARD = 'keyboard'
 
-OUTPUT_PATH = 'run_outputs/'
-WEBOTS_FILE_PATH = OUTPUT_PATH + 'Webots' + time_str() # this will be like: Model_current_data_time
+OUTPUT_PATH = '../Lab4/run_outputs/'
+FILE_PATH = OUTPUT_PATH + 'Woodbot' + time_str() # this will be like: Model_current_data_tim
 
 # if you want to use pre defined trajectory
-USE_DEMO_TRAJECTORY = False
+MODE = USE_TRAJECTORY
+# MODE = USE_JOYSTICK
+# MODE = USE_KEYBOARD
 
 
 # a nice function to automatically update the dependency
@@ -22,8 +27,10 @@ USE_DEMO_TRAJECTORY = False
 o = Operator(debug_mode=True)
 
 
-if USE_DEMO_TRAJECTORY:
-    i = FileCsvInput('run_outputs/webots_test_run.csv')
+if MODE == USE_TRAJECTORY:
+    i = FileCsvInput('traj/example_traj.csv')
+elif MODE == USE_JOYSTICK:
+    i = JoystickInput()
 else:
     # Using  keyboard input (control Woodbot with arrow keys)
     # up: straight (100%, 100%), down: backward (-100, -100)
@@ -43,9 +50,8 @@ o.set_input(i)
 # AnimationOutput -> Show the robot states realtime and save the video of it at the end.
 
 robot = o.add_robot(robot_def=WoodbotDef, robot=WoodbotHard,
-                    robot_args=dict(target='ws://192.168.200.180:80'),
-                    outputs=(FileCsvOutput(WEBOTS_FILE_PATH + '.csv'),
-                             AnimationOutput(WEBOTS_FILE_PATH + '.gif')))
+                    robot_args=dict(target_address='ws://192.168.8.200'),
+                    outputs=(FileCsvOutput(FILE_PATH + '.csv')))
 
 
 # run the robot for 10sec with dt = 0.1.

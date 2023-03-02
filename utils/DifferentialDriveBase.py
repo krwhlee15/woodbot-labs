@@ -85,7 +85,7 @@ class KeyMapRule:
 
 class DifferentialDriveDef(RobotDefBase):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        RobotDefBase.__init__(self, *args, **kwargs)
         self.dimension = DefDict()
 
     def define(self, *args, **kwargs):
