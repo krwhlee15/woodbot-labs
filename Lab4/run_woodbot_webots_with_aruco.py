@@ -4,6 +4,8 @@ from rems.outputs import FileCsvOutput, AnimationOutput
 from rems.utils import time_str, rems_update
 from rems.robots.differential_drive import WoodbotHard
 from rems.robots import ArucoBot
+from rems.device.webots import WebotsBinder
+
 # Woodbot import
 from Lab1.WoodbotDef import WoodbotDef
 
@@ -14,6 +16,8 @@ USE_KEYBOARD = 'keyboard'
 OUTPUT_PATH = '../Lab4/run_outputs/'
 FILE_PATH = OUTPUT_PATH + 'Woodbot' + time_str() # this will be like: Model_current_data_tim
 CAMERA_FILE_PATH = OUTPUT_PATH + 'aruco' + time_str() # this will be like: Model_current_data_time# e
+
+WEBOTS_FILE_PATH = OUTPUT_PATH + 'Webots' + time_str() # this will be like: Model_current_data_time
 
 # if you want to use pre defined trajectory
 MODE = USE_TRAJECTORY
@@ -39,7 +43,7 @@ else:
     # right: (100, 0), left: (0, 100)
     # up & right: (100, 50), up & left: (50, 100)
     # pageup: (-100, 100), pagedown: (100, -100)
-    i = KeyboardInput()
+    i = KeyboardInput(init_state=True)
 
 #  set input
 o.set_input(i)
@@ -54,6 +58,10 @@ o.set_input(i)
 robot = o.add_robot(robot_def=WoodbotDef, robot=WoodbotHard,
                     robot_args=dict(target_address='ws://192.168.8.200'),
                     outputs=(FileCsvOutput(FILE_PATH + '.csv'),))
+
+robot = o.add_robot(robot_def=WoodbotDef, robot=WebotsBinder,
+                    outputs=(FileCsvOutput(WEBOTS_FILE_PATH + '.csv'),
+                             AnimationOutput(WEBOTS_FILE_PATH + '.gif')))
 
 aruco = o.add_robot(robot_def=None, robot=ArucoBot,
                     robot_args=dict(tracids=1, camera_id=1,), # probably camera id is 2 or 1

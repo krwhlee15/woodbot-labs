@@ -49,9 +49,9 @@ Pin mapping
 
 #define IO_EXPANDER 0x38
 
-#define LIDAR_XSHUT_R P4
-#define LIDAR_XSHUT_B P5
-#define LIDAR_XSHUT_L P6
+#define LIDAR_XSHUT_J3 P6
+#define LIDAR_XSHUT_J4 P5
+#define LIDAR_XSHUT_J5 P4
 
 #define LIDAR_RESET 0
 #define LIDAR_ACTIVATE 1
@@ -89,7 +89,7 @@ PCF8574 pcf8574(IO_EXPANDER, SDA_PIN, SCL_PIN);  // IO expander
 #define WIDTH_MAX 2300
 
 #define num_sensors  5
-int16_t sensors[num_sensors];
+uint8_t sensors[num_sensors];
 #define INDEX_LIDAR_F 0
 #define INDEX_LIDAR_R 1
 #define INDEX_MAG_X 2
@@ -146,9 +146,9 @@ void led_setup() {
   pcf8574.pinMode(LED_D4, OUTPUT);
   pcf8574.pinMode(LED_D5, OUTPUT);
   pcf8574.pinMode(LED_D6, OUTPUT);
-  pcf8574.pinMode(LIDAR_XSHUT_L, OUTPUT);
-  pcf8574.pinMode(LIDAR_XSHUT_R, OUTPUT);
-  pcf8574.pinMode(LIDAR_XSHUT_B, OUTPUT);
+  pcf8574.pinMode(LIDAR_XSHUT_J3, OUTPUT);
+  pcf8574.pinMode(LIDAR_XSHUT_J4, OUTPUT);
+  pcf8574.pinMode(LIDAR_XSHUT_J5, OUTPUT);
 
     if (pcf8574.begin()) {
     Serial.println("OK");
@@ -156,13 +156,13 @@ void led_setup() {
     Serial.println("KO");
   }
 
-  pcf8574.digitalWrite(LIDAR_XSHUT_L, LIDAR_RESET);
-  pcf8574.digitalWrite(LIDAR_XSHUT_R, LIDAR_RESET);
-  pcf8574.digitalWrite(LIDAR_XSHUT_B, LIDAR_RESET);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J3, LIDAR_RESET);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J4, LIDAR_RESET);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J5, LIDAR_RESET);
   delay(100);
-  pcf8574.digitalWrite(LIDAR_XSHUT_L, LIDAR_ACTIVATE);
-  pcf8574.digitalWrite(LIDAR_XSHUT_R, LIDAR_ACTIVATE);
-  pcf8574.digitalWrite(LIDAR_XSHUT_B, LIDAR_ACTIVATE);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J3, LIDAR_ACTIVATE);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J4, LIDAR_ACTIVATE);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J5, LIDAR_ACTIVATE);
   
 
   pcf8574.digitalWrite(LED_D3, LED_OFF);
@@ -185,12 +185,29 @@ void imu_setup() {
 }
 
 void lidar_setup() {
-  if (!lox_J2.begin()) {
-    Serial.println(F("Failed to boot VL53L0X"));
-    while (10)
-      ;
+  pcf8574.digitalWrite(LIDAR_XSHUT_J3, LOW);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J4, LOW);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J5, LOW);
+  delay(10);
+
+  // if(!lox_J2.begin()) {
+  //   Serial.println("Failed to boot J2 VL53L0X");
+  // }
+  // pcf8574.digitalWrite(LIDAR_XSHUT_J3, 0);
+  //   if(!lox_J3.begin(LOX_J3_ADDRESS)) {
+  //   Serial.println("Failed to boot J3 VL53L0X");
+  // }
+
+    pcf8574.digitalWrite(LIDAR_XSHUT_J4, HIGH);
+    if(!lox_J4.begin(LOX_J4_ADDRESS)) {
+    Serial.println("Failed to boot J3 VL53L0X");
   }
-  Serial.println("Lidar: VL53L0X is ready");
+
+    pcf8574.digitalWrite(LIDAR_XSHUT_J5, HIGH);
+    if(!lox_J5.begin(LOX_J5_ADDRESS)) {
+    Serial.println("Failed to boot J5 VL53L0X");
+  }
+
 }
 
 
@@ -266,7 +283,7 @@ void read_imu(){
   Serial.print(accel.acceleration.z);
   Serial.println(" m/s^2 ");
 
-  sensors[INDEX_GYRO] = gyro.gyro.z
+  sensors[INDEX_GYRO] = gyro.gyro.z;
 
   /* Display the results (rotation is measured in rad/s) */
   Serial.print("\t\tGyro X: ");
@@ -296,7 +313,6 @@ void neo_led_off() {
     FastLED.show();
   }
 }
-
 
 
 void wifiSetup(){
@@ -353,7 +369,7 @@ void onWebSocketEvent(uint8_t num,
       if (payload[0] == '~') {
         drive(payload[1], payload[2]);
       }else if(payload[0] == 'S') {
-        webSocket.sendTXT(num, );
+        webSocket.sendBIN(num, sensors, num_sensors);
       }
 
 
@@ -369,7 +385,7 @@ void onWebSocketEvent(uint8_t num,
       if (payload[0] == '~'){
       drive(payload[1], payload[2]);
       }else if(payload[1] == 'S') {
-                  webSocket.sendBIN()(id, sensors, num_sensors);
+             webSocket.sendBIN(num, sensors, num_sensors);
           }
 
       break;

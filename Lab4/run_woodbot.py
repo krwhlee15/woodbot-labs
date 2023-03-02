@@ -14,8 +14,8 @@ OUTPUT_PATH = '../Lab4/run_outputs/'
 FILE_PATH = OUTPUT_PATH + 'Woodbot' + time_str() # this will be like: Model_current_data_tim
 
 # if you want to use pre defined trajectory
-MODE = USE_TRAJECTORY
-# MODE = USE_JOYSTICK
+# MODE = USE_TRAJECTORY
+MODE = USE_JOYSTICK
 # MODE = USE_KEYBOARD
 
 
