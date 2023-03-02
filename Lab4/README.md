@@ -29,6 +29,11 @@
 2. Design Trajectory
 3. Tail Design
 
+## Notes
+- You need to do design decisions based on either model, simulation, or hardware
+- But still run others for comparisons at least once
+- For the math model, you can do realtime=False and run as fast as possible
+
 
 ## CoM Allocation
 - Total weight of the actual hardware is 0.12kg
