@@ -54,6 +54,7 @@ Connect to woodbot-wifi
 - What could be expected consequences due to such behaviors? How it can affect the performance of Woodbot?
 > - It would be less stable
 > - It may drag more
+> - If the center of mass is really huge, then it may flip over the robot itself.
 
 ### Experiments
 - Try CoM of x =-0.04, -0.03, -0.02, -0.015 at least
@@ -61,12 +62,12 @@ Connect to woodbot-wifi
 - Create appropriate trajectories to best determine the effect
 
 ### Which one do you use to make the decisions, math model, physics simulation, hardware?
-> - Your answer
+> - Physics Simulation
 
 #### Why?
-> - The math model is...
-> - The physics simulation is...
-> - The hardware is...
+> - The math model is decent, but it is not as accurate as the physics simulation. It may give an idealistic set of data, but it is not as accurate.
+> - The physics simulation is the best choice because it is the most realistic to our situation and gives us the most reliable data which we could use.
+> - The hardware would be the best if we could measure the CoM for the hardware. However, we cannot find where the center of mass is. Also, even if we could find the center of mass, we could not figure out how to adjust the center of mass. Also, the battery makes the CoM variable.
 
 ### Results and Discussions
 > - Tell us your observations.
