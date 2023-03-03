@@ -48,12 +48,12 @@ Connect to woodbot-wifi
 - The hardware is symmetric
 ### How the robot will be affected by the change of CoM?
 - What could be expected behaviors of moving the CoM to the front in the x direction 
-> - Your answer here
-> - 
+> - When the CoM is towards the front in the x direction, it could be more stable.
+> - It will have less friction on the wheels but more friction on the tail.
 
 - What could be expected consequences due to such behaviors? How it can affect the performance of Woodbot?
-> - Your answer here
-> -
+> - It would be less stable
+> - It may drag more
 
 ### Experiments
 - Try CoM of x =-0.04, -0.03, -0.02, -0.015 at least
