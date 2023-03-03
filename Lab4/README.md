@@ -70,15 +70,16 @@ Connect to woodbot-wifi
 > - The hardware would be the best if we could measure the CoM for the hardware. However, we cannot find where the center of mass is. Also, even if we could find the center of mass, we could not figure out how to adjust the center of mass. Also, the battery makes the CoM variable.
 
 ### Results and Discussions
-> - Tell us your observations.
-> - How change in the parameter affected the system?
-> - Show some figures/screenshots
-> 
+> - When we had the CoM too low, the simulation was extremely unsteady and wiggled a lot. There was too much friction on the tip which caused  a lot of issues.
+> - When the CoM was too high, the shape was ok, but the lengths were way too high and it ran too long.
+> - We discovered the closest to perfect design was CoM with CoM of -0.02.
+> - It still was not completely perfect, but it was very close to what we want.
 ### Design Decisions
 Given your results, what is the appropriate range of CoM? 
 If we are to modify the hardware what and how do you change based on the result?
->- 
->- 
+> - We discovered the closest to perfect design was CoM with CoM of -0.02.
+> - It still was not completely perfect, but it was very close to what we want.
+> - It is hard to change the hardware, so I would not change the hardware. However, if I did change the hardware I think it is hard to be exact, so I would rather have a CoM that is closer to 0 than further from 0. If the magnitude was too high, it caused more issues than if it was smaller, so I would try to put the center of mass towards that location.
 
 ******
 
