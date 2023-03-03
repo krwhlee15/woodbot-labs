@@ -1,3 +1,5 @@
+
+
 #include "Wire.h"
 #include <PCF8574.h>
 #include <Adafruit_LSM6DS3TRC.h>
@@ -6,6 +8,19 @@
 #include <QMC5883LCompass.h>
 #include <FastLED.h>
 
+#include <WiFi.h>
+#include "WebSocketsServer.h" 
+
+
+
+// Constants
+const char* ssid = "woodbot-wifi";
+const char* password = "goodwoodbot";
+String hostname = "My_Great_Woodbot";
+int left_conv;
+int right_conv;
+int left_flag;
+int right_flag;
 
 
 /*
@@ -34,9 +49,9 @@ Pin mapping
 
 #define IO_EXPANDER 0x38
 
-#define LIDAR_XSHUT_R P4
-#define LIDAR_XSHUT_B P5
-#define LIDAR_XSHUT_L P6
+#define LIDAR_XSHUT_J3 P6
+#define LIDAR_XSHUT_J4 P5
+#define LIDAR_XSHUT_J5 P4
 
 #define LIDAR_RESET 0
 #define LIDAR_ACTIVATE 1
@@ -45,6 +60,8 @@ Pin mapping
 #define LED_CHIP WS2811
 #define NUM_LEDS 6
 
+// Websocket init at port 80
+WebSocketsServer webSocket = WebSocketsServer(80);
 
 // Device variables
 Adafruit_LSM6DS3TRC lsm6ds3trc;                  // 6dof IMU
@@ -60,9 +77,24 @@ Servo servo_J9;                                     // Servo PWM
 CRGB leds[NUM_LEDS];                             // Neo LED
 PCF8574 pcf8574(IO_EXPANDER, SDA_PIN, SCL_PIN);  // IO expander
 
+// lidar addresss
+#define LOX_J2_ADDRESS 0x20
+#define LOX_J3_ADDRESS 0x21
+#define LOX_J4_ADDRESS 0x22
+#define LOX_J5_ADDRESS 0x23
+
+
 // Servo settings for FS90r
 #define WIDTH_MIN 700
 #define WIDTH_MAX 2300
+
+#define num_sensors  5
+uint8_t sensors[num_sensors];
+#define INDEX_LIDAR_F 0
+#define INDEX_LIDAR_R 1
+#define INDEX_MAG_X 2
+#define INDEX_MAG_Y 3
+#define INDEX_GYRO 4
 
 
 
@@ -72,24 +104,18 @@ void setup() {
   while (!Serial) {
     delay(10);
   }
+  wifiSetup();
   // Set I2C ports
   Wire.setPins(SDA_PIN, SCL_PIN);
   Serial.println("Device Initialization");
   device_setup();
+
 }
 
 void loop() {
-  pcf8574.digitalWrite(LED_D6, LED_ON);
-
-
-  delay(1000);
-  pcf8574.digitalWrite(LED_D6, LED_OFF);
-
-  delay(1000);
-
+  // Look for and handle WebSocket data
+  webSocket.loop();
 }
-
-
 
 
 
@@ -106,7 +132,6 @@ void device_setup() {
   lidar_setup();                       // init lidar
   pcf8574.digitalWrite(LED_D6, LED_ON);  // turn D3 on (init progress)
   delay(1000);
-
   servo_setup();                                            // setup servo
   FastLED.addLeds<LED_CHIP, LED_NEO, GRB>(leds, NUM_LEDS);  // init neo led
   Serial.println("NEO LED is ready");
@@ -121,9 +146,9 @@ void led_setup() {
   pcf8574.pinMode(LED_D4, OUTPUT);
   pcf8574.pinMode(LED_D5, OUTPUT);
   pcf8574.pinMode(LED_D6, OUTPUT);
-  pcf8574.pinMode(LIDAR_XSHUT_L, OUTPUT);
-  pcf8574.pinMode(LIDAR_XSHUT_R, OUTPUT);
-  pcf8574.pinMode(LIDAR_XSHUT_B, OUTPUT);
+  pcf8574.pinMode(LIDAR_XSHUT_J3, OUTPUT);
+  pcf8574.pinMode(LIDAR_XSHUT_J4, OUTPUT);
+  pcf8574.pinMode(LIDAR_XSHUT_J5, OUTPUT);
 
     if (pcf8574.begin()) {
     Serial.println("OK");
@@ -131,13 +156,13 @@ void led_setup() {
     Serial.println("KO");
   }
 
-  pcf8574.digitalWrite(LIDAR_XSHUT_L, LIDAR_RESET);
-  pcf8574.digitalWrite(LIDAR_XSHUT_R, LIDAR_RESET);
-  pcf8574.digitalWrite(LIDAR_XSHUT_B, LIDAR_RESET);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J3, LIDAR_RESET);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J4, LIDAR_RESET);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J5, LIDAR_RESET);
   delay(100);
-  pcf8574.digitalWrite(LIDAR_XSHUT_L, LIDAR_ACTIVATE);
-  pcf8574.digitalWrite(LIDAR_XSHUT_R, LIDAR_ACTIVATE);
-  pcf8574.digitalWrite(LIDAR_XSHUT_B, LIDAR_ACTIVATE);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J3, LIDAR_ACTIVATE);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J4, LIDAR_ACTIVATE);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J5, LIDAR_ACTIVATE);
   
 
   pcf8574.digitalWrite(LED_D3, LED_OFF);
@@ -160,12 +185,29 @@ void imu_setup() {
 }
 
 void lidar_setup() {
-  if (!lox_J2.begin()) {
-    Serial.println(F("Failed to boot VL53L0X"));
-    while (10)
-      ;
+  pcf8574.digitalWrite(LIDAR_XSHUT_J3, LOW);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J4, LOW);
+  pcf8574.digitalWrite(LIDAR_XSHUT_J5, LOW);
+  delay(10);
+
+  // if(!lox_J2.begin()) {
+  //   Serial.println("Failed to boot J2 VL53L0X");
+  // }
+  // pcf8574.digitalWrite(LIDAR_XSHUT_J3, 0);
+  //   if(!lox_J3.begin(LOX_J3_ADDRESS)) {
+  //   Serial.println("Failed to boot J3 VL53L0X");
+  // }
+
+    pcf8574.digitalWrite(LIDAR_XSHUT_J4, HIGH);
+    if(!lox_J4.begin(LOX_J4_ADDRESS)) {
+    Serial.println("Failed to boot J3 VL53L0X");
   }
-  Serial.println("Lidar: VL53L0X is ready");
+
+    pcf8574.digitalWrite(LIDAR_XSHUT_J5, HIGH);
+    if(!lox_J5.begin(LOX_J5_ADDRESS)) {
+    Serial.println("Failed to boot J5 VL53L0X");
+  }
+
 }
 
 
@@ -180,6 +222,11 @@ void read_compass() {
   x = compass.getX();
   y = compass.getY();
   z = compass.getZ();
+
+// update the data array to send back
+  sensors[INDEX_MAG_X] = x;
+  sensors[INDEX_MAG_Y] = y;
+
 
   Serial.print("X: ");
   Serial.print(x);
@@ -211,6 +258,12 @@ void servo_setup() {
   Serial.println("Servos are ready");
 }
 
+void drive(int right, int left) {
+  servo_J7.write(180 - left);
+  servo_J9.write(right);
+}
+
+
 void read_imu(){
   sensors_event_t accel;
   sensors_event_t gyro;
@@ -229,6 +282,8 @@ void read_imu(){
   Serial.print(" \tZ: ");
   Serial.print(accel.acceleration.z);
   Serial.println(" m/s^2 ");
+
+  sensors[INDEX_GYRO] = gyro.gyro.z;
 
   /* Display the results (rotation is measured in rad/s) */
   Serial.print("\t\tGyro X: ");
@@ -256,5 +311,92 @@ void neo_led_off() {
     // set our current dot to red, green, and blue
     leds[i] = CRGB::Black;
     FastLED.show();
+  }
+}
+
+
+void wifiSetup(){
+  // Connect to access point
+  Serial.println("Connecting");
+  // WiFi.mode(WIFI_AP);
+
+  WiFi.setHostname(hostname.c_str());  //define hostname
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  // Print our IP address
+  Serial.println("Connected!");
+  Serial.print("My IP address: ");
+  Serial.println(WiFi.localIP());
+
+  // Start WebSocket server and assign callback
+  webSocket.begin();
+  webSocket.onEvent(onWebSocketEvent);
+}
+
+
+// Called when receiving any WebSocket message
+void onWebSocketEvent(uint8_t num,
+                      WStype_t type,
+                      uint8_t* payload,
+                      size_t length) {
+
+  // Figure out the type of WebSocket event
+  switch (type) {
+
+    // Client has disconnected
+    case WStype_DISCONNECTED:
+      Serial.printf("[%u] Disconnected!\n", num);
+      drive(90, 90);
+      break;
+
+    // New client has connected
+    case WStype_CONNECTED:
+      {
+        IPAddress ip = webSocket.remoteIP(num);
+        Serial.printf("[%u] Connection from ", num);
+        Serial.println(ip.toString());
+        // send message to client
+        webSocket.sendTXT(num, "Connected to ");
+        webSocket.sendTXT(num, hostname);
+        break;
+      }
+
+    case WStype_BIN:
+      if (payload[0] == '~') {
+        drive(payload[1], payload[2]);
+      }else if(payload[0] == 'S') {
+        webSocket.sendBIN(num, sensors, num_sensors);
+      }
+
+
+    // Echo text message back to client
+    case WStype_TEXT:
+      webSocket.sendTXT(num, payload);
+
+      //...BUT ACTIVATED BY WEB SOCKET TEXT COMMANDS LIKE PAPERBOT
+      if (payload[0] == '#') {
+        if (payload[1] == 'F') {
+        }
+      }
+      if (payload[0] == '~'){
+      drive(payload[1], payload[2]);
+      }else if(payload[1] == 'S') {
+             webSocket.sendBIN(num, sensors, num_sensors);
+          }
+
+      break;
+
+    // For everything else: do nothing
+    case WStype_ERROR:
+    case WStype_FRAGMENT_TEXT_START:
+    case WStype_FRAGMENT_BIN_START:
+    case WStype_FRAGMENT:
+    case WStype_FRAGMENT_FIN:
+    default:
+      break;
   }
 }

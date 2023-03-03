@@ -40,7 +40,7 @@ DIMENSION = {'W': 0.1,
 
 class WoodbotDef(DifferentialDriveDef):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        DifferentialDriveDef.__init__(self, *args, **kwargs)
         # set definitions for self.inpt
         # self.inpt is a dictionary like custom object
         # we can treat like dictionary, but more functions
