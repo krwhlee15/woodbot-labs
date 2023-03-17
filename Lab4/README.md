@@ -98,32 +98,37 @@ If we are to modify the hardware what and how do you change based on the result?
 3. Spin right 90 degree (0.317s)
 4. Run Left at 100% and right at 50 % for x sec....
 
-> - Your answer here
-> - 
+> - Init state
+> - Move forward for 1.5 seconds
+> - Spin right 120 degrees(0.55s)
+> - Move forward for 1.5 seconds
+> - Spin right 120 degrees(0.55s)
 
 
 ### Experiments
 - Write a reference input using the csv example
 - You only run hardware once in the field
+> - 
 
 ### Which one do you use to design the trajectory first, math model, physics simulation, hardware?
-> - Your answer
+> - Physics simulation
 
 #### Why?
-> - The math model is...
-> - The physics simulation is...
-> - The hardware is...
+> - The math model is not ideal for real tests because although it is idealistic
+> - The physics simulation is better for real tests because it awknowledges that there are discrepancies with the data
+> - The hardware is hard to get exact readings from and can be subject to random variables of chane
 
 ### Results and Discussions
 > - Tell us your observations.
 > - Does the same trajectory gives you triangle for all model, simulation and hardware?
 > - Show some figures/screenshots
-> 
+> - Although there are some discrepancies, a general triangle shape is made. Some errors can occur because the wheels do not turn enough. We can account for this by turning a little bit more. Also, it may cross over itself, which we think is ok because it still makes a triangle shape.
 ### Design Decisions
 Given your results, how can you make the results more consistent across model, simulation and hardware?
 If we are to modify the hardware what and how do you change based on the result?
->- 
->- 
+>- We can have everything run slowly and for a short period of time so that any random changes are small
+>- However, this may make the results not super helpful because of how small the sample size is.
+>- We can also change hardware designs to help improve stability.
 
 ******
 
@@ -133,38 +138,39 @@ If we are to modify the hardware what and how do you change based on the result?
 ### What is expected outcome based on the tail design, environment and motion?
 > - Your answer here
 > #### With a clean epoxy surface
-> - When moving forward the pointy tail...
-> - When moving forward the circular tail...
-> - When turning the pointy tail...
-> - When turning forward the circular tail...
+> - When moving forward the pointy tail works well with little to no significant discrepancies in predicted motion.
+> - When moving forward the circular tail works well with little to no significant discrepancies in predicted motion.
+> - When turning the pointy tail works well for the most part, but seems more susceptible to get snagged onto things
+> - When turning forward the circular tail is more smooth and doesn't really get caught on things
 > - ....
 > #### With green carpet
-> - When moving forward the pointy tail...
-> - When moving forward the circular tail...
-> - When turning the pointy tail...
-> - When turning forward the circular tail...
-> - ....
+> - When moving forward the pointy tail works well as predicted.
+> - When moving forward the circular tail works well as predicted.
+> - When turning the pointy tail it got snagged on a lot of things because of the uneven texture of the carpet. It wasn't a big deal, but it was worth mentioning
+> - When turning forward the circular tail it seemed also to get slightly caught on the carpet but barely
 
 ### Experiments
 - Try two tails in two different environments
 - You can separately run model and webots from hardware later as long as you save the trajectory
 
 ### Which one do you use to make the decisions, math model, physics simulation, hardware?
-> - Your answer
+> - The physics simulation allows us to change the tail design
 
 #### Why?
-> - The math model is...
-> - The physics simulation is...
-> - The hardware is...
+> - The math model is hard to use to simulate the capabilites for tails.
+> - The physics simulation has the capabilities of knowing how the machine will run.
+> - The hardware requires too many resources and is hard to measure.
 
 ### Results and Discussions
 > - Tell us your observations.
 > - How change in the tail affected the system?
 > - How did they sound?
 > - Show some figures/screenshots
-> 
+> - The changes in tails did not really have a significant change in the results of the experiment. The pointy tail had a little more drag, which made it steadier but also moved less than the other tails.
 ### Design Decisions
 Given your results, what is your design decisions? 
 If we are to modify the hardware what and how do you change based on the result?
->- 
->- 
+>- We want to use the round tail
+>- The round tail gets snagged on things too easily
+>- The pointy tail gives enough stability because of the drag of the material
+>- The pointy tail achieves all we want to accomplish.
