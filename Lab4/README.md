@@ -173,4 +173,4 @@ If we are to modify the hardware what and how do you change based on the result?
 >- We want to use the round tail
 >- The round tail gets snagged on things too easily
 >- The pointy tail gives enough stability because of the drag of the material
->- The pointy tail achieves all we want to accomplish.
+>- The pointy tail achieves all we want to accomplish
